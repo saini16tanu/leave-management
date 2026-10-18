@@ -3,6 +3,9 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
+const leaveTypeRoutes = require("./routes/leaveTypeRoutes");
+const leaveRoutes = require("./routes/leaveRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 const { notFound, errorHandler } = require("./middleware/errorHandler");
 
 const app = express();
@@ -27,7 +30,9 @@ app.get("/", (req, res) => {
 
 // routes
 app.use("/api/auth", authRoutes);
-// more routes will be added here
+app.use("/api/leave-types", leaveTypeRoutes);
+app.use("/api/leaves", leaveRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 // these must be after all routes
 app.use(notFound);
