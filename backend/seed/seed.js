@@ -128,6 +128,12 @@ const seedData = async () => {
         continue;
       }
 
+      // applied 7 days before the leave starts, but never in the future
+      let appliedAt = addDays(fromDate, -7);
+      if (appliedAt > today) {
+        appliedAt = addDays(today, -2);
+      }
+
       const leave = {
         employee: userByEmpId[item.emp]._id,
         leaveType: typeByName[item.type]._id,
@@ -136,6 +142,7 @@ const seedData = async () => {
         days: days,
         reason: item.reason,
         status: item.status,
+        createdAt: appliedAt,
       };
 
       // approved and rejected leaves were reviewed by the admin
