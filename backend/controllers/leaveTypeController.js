@@ -20,6 +20,13 @@ const leaveTypeController = {
   // create a new leave type (admin)
   create: async (req, res) => {
     const { name, yearlyQuota, description } = req.body;
+
+    // check if a leave type with this name already exists
+    const nameExists = await LeaveType.findOne({ name: name });
+    if (nameExists) {
+      return res.status(409).json({ message: "A leave type with this name already exists" });
+    }
+
     const leaveType = await LeaveType.create({ name, yearlyQuota, description });
     res.status(201).json({ message: "Leave type created", leaveType });
   },
@@ -27,6 +34,15 @@ const leaveTypeController = {
   // update a leave type (admin)
   update: async (req, res) => {
     const { name, yearlyQuota, description } = req.body;
+
+    // check if another leave type already has this name
+    if (name) {
+      const nameExists = await LeaveType.findOne({ name: name, _id: { $ne: req.params.id } });
+      if (nameExists) {
+        return res.status(409).json({ message: "A leave type with this name already exists" });
+      }
+    }
+
     // returnDocument "after" gives back the updated data, runValidators checks min/max
     const leaveType = await LeaveType.findByIdAndUpdate(
       req.params.id,

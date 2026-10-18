@@ -12,7 +12,8 @@ import LeaveDetails from "./pages/LeaveDetails";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminRequests from "./pages/AdminRequests";
 import LeaveTypes from "./pages/LeaveTypes";
-import LeaveTypeForm from "./pages/LeaveTypeForm";
+import AddLeaveType from "./pages/AddLeaveType";
+import EditLeaveType from "./pages/EditLeaveType";
 
 // read the saved user from localStorage (null if not logged in)
 function getSavedUser() {
@@ -121,7 +122,7 @@ function App() {
             path="/admin/leave-types/new"
             element={
               <ProtectedRoute user={user} roles={["admin"]}>
-                <LeaveTypeForm />
+                <AddLeaveType />
               </ProtectedRoute>
             }
           />
@@ -129,7 +130,7 @@ function App() {
             path="/admin/leave-types/:id/edit"
             element={
               <ProtectedRoute user={user} roles={["admin"]}>
-                <LeaveTypeForm />
+                <EditLeaveType />
               </ProtectedRoute>
             }
           />

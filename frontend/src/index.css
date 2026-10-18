@@ -593,6 +593,184 @@ h3 {
   color: #991b1b;
 }
 
+/* ---------- admin pages ---------- */
+.page-title-tight {
+  margin-bottom: 4px;
+}
+
+.card-title {
+  font-size: 17px;
+  margin-bottom: 16px;
+}
+
+/* number cards in different colors */
+.stats-grid {
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.stat-warning {
+  border-left-color: var(--warning);
+  background: #fffbeb;
+}
+
+.stat-success {
+  border-left-color: var(--success);
+}
+
+.stat-danger {
+  border-left-color: var(--danger);
+}
+
+.stat-grey {
+  border-left-color: var(--muted);
+}
+
+.stat-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--warning);
+}
+
+/* two cards side by side on the dashboard */
+/* minmax(0, ...) lets a wide table scroll inside its card instead of making the page wider */
+.dashboard-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 16px;
+  align-items: start;
+}
+
+/* wider page for the big requests table */
+.container.wide {
+  max-width: 1320px;
+}
+
+/* smaller cells so all columns fit on a laptop screen */
+.table-compact th,
+.table-compact td {
+  padding: 10px 10px;
+}
+
+.table-compact td {
+  font-size: 13px;
+}
+
+.table-compact td.wrap-cell {
+  min-width: 140px;
+}
+
+/* table inside a card (no extra shadow) */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* bar chart made with divs */
+.bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.bar-label {
+  width: 100px;
+  font-size: 14px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.bar-track {
+  flex: 1;
+  height: 14px;
+  background: var(--bg);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 999px;
+}
+
+.bar-count {
+  width: 28px;
+  text-align: right;
+  font-weight: 700;
+}
+
+/* filters on the requests page */
+.filters-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-select {
+  padding: 7px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background: var(--white);
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.result-count {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+/* table cells */
+.cell-main {
+  font-weight: 600;
+}
+
+.cell-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* long text can go to the next line */
+.table td.wrap-cell,
+.wrap-cell {
+  white-space: normal;
+  min-width: 160px;
+  max-width: 260px;
+}
+
+.review-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.remarks-input {
+  width: 170px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.remarks-input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
 /* ---------- small screens ---------- */
 @media (max-width: 640px) {
   .main {
@@ -616,5 +794,16 @@ h3 {
 
   .card {
     padding: 18px;
+  }
+
+  .bar-label {
+    width: 85px;
+  }
+}
+
+/* dashboard cards one under the other on tablets too */
+@media (max-width: 900px) {
+  .dashboard-columns {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
