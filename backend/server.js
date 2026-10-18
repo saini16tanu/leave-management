@@ -16,10 +16,16 @@ connectDB();
 // read JSON data from request body
 app.use(express.json());
 
+// frontend address from .env (remove the "/" at the end if present)
+let clientUrl = process.env.CLIENT_URL || "";
+if (clientUrl.endsWith("/")) {
+  clientUrl = clientUrl.slice(0, -1);
+}
+
 // allow the React frontend to call this API
 app.use(
   cors({
-    origin: [process.env.CLIENT_URL, "http://localhost:5173"],
+    origin: [clientUrl, "http://localhost:5173"],
   })
 );
 

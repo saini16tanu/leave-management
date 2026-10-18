@@ -18,11 +18,12 @@ export async function apiRequest(path, method = "GET", body = null) {
     options.body = JSON.stringify(body);
   }
 
+  // fetch fails when there is no response (network error or the server is sleeping)
   let response;
   try {
     response = await fetch(API_URL + path, options);
   } catch {
-    throw new Error("Cannot connect to the server. Please try again in a minute.");
+    throw new Error("Cannot reach the server. It may be starting up, please wait 30 seconds and try again.");
   }
 
   // read the JSON data (empty object if the response has no JSON)
