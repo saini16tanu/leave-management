@@ -10,9 +10,11 @@ Employees apply for leave, managers approve or reject, and balances update autom
 
 | | Link |
 |---|---|
-| Frontend URL | _to be added_ |
-| Backend API URL | _to be added_ |
+| Frontend URL | https://leavedesk-ashen.vercel.app |
+| Backend API URL | https://leavedesk-api-6aim.onrender.com |
 | YouTube Demo | _to be added_ |
+
+Note: the backend is on Render's free plan, so the first request after some idle time can take 30-60 seconds.
 
 ## Test Logins
 
