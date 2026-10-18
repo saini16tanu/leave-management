@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const authRoutes = require("./routes/authRoutes");
+const { notFound, errorHandler } = require("./middleware/errorHandler");
 
 const app = express();
 
@@ -23,10 +25,21 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "Leave Management API is running" });
 });
 
-// routes will be added here
+// routes
+app.use("/api/auth", authRoutes);
+// more routes will be added here
+
+// these must be after all routes
+app.use(notFound);
+app.use(errorHandler);
 
 // start the server
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, (err) => {
+  // stop if the port is already in use
+  if (err) {
+    console.log("Server could not start: " + err.message);
+    process.exit(1);
+  }
   console.log(`Server running on port ${PORT}`);
 });
